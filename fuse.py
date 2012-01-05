@@ -28,7 +28,10 @@ _system = system()
 _machine = machine()
 
 if _system == 'Darwin':
-    _libfuse_path = find_library('fuse4x') or find_library('fuse')
+    _libfuse_path = find_library('fuse4x') or \
+        find_library('fuse') or \
+        find_library('/usr/local/lib/libfuse4x') or \
+        find_library('/usr/local/lib/libfuse')
 else:
     _libfuse_path = find_library('fuse')
 if not _libfuse_path:
